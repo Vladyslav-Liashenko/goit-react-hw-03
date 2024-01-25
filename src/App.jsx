@@ -6,8 +6,12 @@ import { SearchBox } from './components/SearchBox/SearchBox';
 import { ContactList } from './components/ContactList/ContactList';
 
 function App() {
-  const [inputValueName, setInputValueName] = useState('');
-  const [inputValueNumber, setInputValueNumber] = useState('');
+  const [inputValue, setInputValue] = useState(() => {
+    return {
+      name: "",
+      number: "",
+    }
+  });
 
   const makeContact = props => {
     console.log(props);
@@ -18,11 +22,9 @@ function App() {
       <h1>Phonebook</h1>
       <ContactForm
         onSubmit={makeContact}
-        inputValueName={inputValueName}
-        setInputValueName={setInputValueName}
-
-        inputValueNumber={inputValueNumber}
-        setInputValueNumber={setInputValueNumber}
+        inputValue={inputValue}
+        setInputValue={setInputValue}
+        onChange={makeContact}
       />
       <SearchBox />
       <ContactList

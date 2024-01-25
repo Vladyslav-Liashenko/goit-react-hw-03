@@ -1,8 +1,8 @@
 export const ContactForm = ({
   onSubmit,
-  inputValueName,
-  inputValueNumber,
+  inputValue,
   setInputValue,
+  
 }) => {
   const handleSubmit = evt => {
     evt.preventDefault();
@@ -10,13 +10,16 @@ export const ContactForm = ({
     setInputValue(evt.target.elements);
     evt.target.reset();
   };
+  const handleChange = evt => {
+    setInputValue(evt.target.elements)
+  }
   return (
     <div>
       <form onSubmit={handleSubmit}>
         <label htmlFor="username">Name</label>
         <input
           type="text"
-          value={inputValueName}
+          value={inputValue}
           name="username"
           id="username"
         />
@@ -24,12 +27,12 @@ export const ContactForm = ({
         <label htmlFor="usernumber">Number</label>
         <input
           type="text"
-          value={inputValueNumber}
+          value={inputValue}
           name="usernumber"
           id="usernumber"
         />
 
-        <button type="submit">Add contact</button>
+        <button type="submit" onChange={handleChange}>Add contact</button>
       </form>
     </div>
   );
