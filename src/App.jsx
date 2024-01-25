@@ -6,12 +6,21 @@ import { SearchBox } from './components/SearchBox/SearchBox';
 import { ContactList } from './components/ContactList/ContactList';
 
 function App() {
-  console.log(contacts);
+  
+  const makeContact = props => {
+    console.log(props);
+  };
+
   return (
     <>
-      <ContactForm />
+      <h1>Phonebook</h1>
+      <ContactForm
+        onSubmit={makeContact}
+      />
       <SearchBox />
-      <ContactList />
+      <ContactList
+        contacts={contacts}
+      />
     </>
   );
 }
