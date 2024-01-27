@@ -1,6 +1,4 @@
 export const Contact = ({ name, number }) => {
-  const handleDelete = () => {
-  }
   return (
     <div>
       <h2>
@@ -11,7 +9,7 @@ export const Contact = ({ name, number }) => {
         <img src="/src/assets/telephone-fill.svg" alt="phone" />
         {number}
       </a>
-      <button onClick={handleDelete}>Delete</button>
+      
     </div>
   );
 };
