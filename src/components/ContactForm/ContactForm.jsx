@@ -1,31 +1,46 @@
-export const ContactForm = ({ onSubmit, inputValue, setInputValue }) => {
-  // const handleSubmit = evt => {
-  //   evt.preventDefault();
-  //   onSubmit(evt.target.elements);
-  //   setInputValue(evt.target.elements);
-  //   evt.target.reset();
-  // };
-  // const handleChange = evt => {
-  //   setInputValue(evt.target.elements);
-  // };
+import { useId } from 'react';
+import { Formik, Form, Field } from 'formik';
+import * as Yup from 'yup';
+
+export const ContactForm = ({ addContact }) => {
+  const nameField = useId();
+  const numberField = useId();
+  const contactField = useId();
+
+  const contactSchema = Yup.object().shape({
+    name: Yup.string()
+      .min(2, 'Name must be at least 2 sumb long')
+      .required('This is a required field'),
+    number: Yup.string()
+      .min(5, 'Number must be at least 5 sumb long')
+      .required('This is a required field'),
+  });
+
   return (
     <div>
-      {/* <form onSubmit={handleSubmit}>
-        <label htmlFor="username">Name</label>
-        <input type="text" value={inputValue} name="username" id="username" />
+      <Formik
+        initialValues={{
+          name: '',
+          number: '',
+        }}
+        validationSchema={contactSchema}
+        onSubmit={(values, actions) => {
+          addContact({ id: contactField, ...values });
+          actions.resetForm();
+        }}
+      >
+        <Form>
+          <div>
+            <label htmlFor="name">Name</label>
+            <Field type="text" name="name" id={nameField} />
 
-        <label htmlFor="usernumber">Number</label>
-        <input
-          type="text"
-          value={inputValue}
-          name="usernumber"
-          id="usernumber"
-        />
+            <label htmlFor="number">Number</label>
+            <Field type="text" name="number" id={numberField} />
 
-        <button type="submit" onChange={handleChange}>
-          Add contact
-        </button>
-      </form> */}
+            <button type="submit">Add contact</button>
+          </div>
+        </Form>
+      </Formik>
     </div>
   );
 };
