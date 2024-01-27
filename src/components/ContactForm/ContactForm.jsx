@@ -1,5 +1,5 @@
 import { useId } from 'react';
-import { Formik, Form, Field } from 'formik';
+import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 
 export const ContactForm = ({ addContact }) => {
@@ -29,13 +29,15 @@ export const ContactForm = ({ addContact }) => {
           actions.resetForm();
         }}
       >
-        <Form>
+        <Form autoComplete='off'>
           <div>
             <label htmlFor="name">Name</label>
             <Field type="text" name="name" id={nameField} />
+            <ErrorMessage name="name" component="span"/>
 
             <label htmlFor="number">Number</label>
             <Field type="text" name="number" id={numberField} />
+            <ErrorMessage name="number" component="span"/>
 
             <button type="submit">Add contact</button>
           </div>
