@@ -1,12 +1,21 @@
-import { useState } from 'react';
-import contactsData from './data/contacts.json';
+import { useEffect, useState } from 'react';
 import { ContactForm } from './ContactForm/ContactForm';
 import { SearchBox } from './SearchBox/SearchBox';
 import { ContactList } from './ContactList/ContactList';
 
 function App() {
-  //CONTACT LIST//
-  const [allContacts, setAllContacts] = useState(contactsData);
+//   CONTACT LIST//
+  const [allContacts, setAllContacts] = useState(() => {
+  const savedContacts = window.localStorage.getItem('allContacts');
+  if (savedContacts !== null) {
+    return JSON.parse(savedContacts);
+  }
+  return [];
+});
+
+   useEffect(() => {
+    window.localStorage.setItem('allContacts', JSON.stringify(allContacts));
+  }, [allContacts]);
 
   const deleteContact = contactId => {
     const updatedContacts = allContacts.filter(
@@ -33,7 +42,6 @@ function App() {
     });
   };
 
-  
   return (
     <>
       <h1>Phonebook</h1>

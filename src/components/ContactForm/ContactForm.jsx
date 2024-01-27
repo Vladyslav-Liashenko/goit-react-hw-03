@@ -1,6 +1,7 @@
 import { useId } from 'react';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
+import styled from './ContactForm.module.css';
 
 export const ContactForm = ({ addContact }) => {
   const nameField = useId();
@@ -30,16 +31,16 @@ export const ContactForm = ({ addContact }) => {
         }}
       >
         <Form autoComplete='off'>
-          <div>
-            <label htmlFor="name">Name</label>
+          <div className={styled.form}>
+            <label htmlFor="name" className={styled.label}>Name</label>
             <Field type="text" name="name" id={nameField} />
             <ErrorMessage name="name" component="span"/>
 
-            <label htmlFor="number">Number</label>
+            <label htmlFor="number" className={styled.label}>Number</label>
             <Field type="text" name="number" id={numberField} />
             <ErrorMessage name="number" component="span"/>
 
-            <button type="submit">Add contact</button>
+            <button type="submit" className={styled.btnAdd}>Add contact</button>
           </div>
         </Form>
       </Formik>
