@@ -19,7 +19,7 @@ function App() {
     setAllContacts(updatedContacts);
   };
   
-//   CONTACT LIST//
+//   CONTACT LIST
   const [allContacts, setAllContacts] = useState(() => {
   const savedContacts = window.localStorage.getItem('allContacts');
   if (savedContacts !== null) {
