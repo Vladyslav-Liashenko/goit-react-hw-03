@@ -1,16 +1,23 @@
-import styled from "./Contact.module.css";
-export const Contact = ({ name, number }) => {
+import styled from './Contact.module.css';
+import userIcon from '../../../assets/person-fill.svg';
+import telIcon from '../../../assets/telephone-fill.svg';
+
+export const Contact = ({ name, number, onDelete, contactId }) => {
   return (
-    <div>
-      <h2>
-        <img src="/src/assets/person-fill.svg" alt="user" />
-        <span className={styled.info}>{name}</span>
-      </h2>
-      <a href={`tel:${number}`}>
-        <img src="/src/assets/telephone-fill.svg" alt="phone" />
-        <span className={styled.info}>{number}</span>
-      </a>
-      
+    <div className={styled.card}>
+      <div>
+        <h2>
+          <img src={userIcon} alt="user" />
+          <span className={styled.info}>{name}</span>
+        </h2>
+        <a href={`tel:${number}`}>
+          <img src={telIcon} alt="phone" />
+          <span className={styled.info}>{number}</span>
+        </a>
+      </div>
+      <button onClick={() => onDelete(contactId)}>
+        Delete
+      </button>
     </div>
   );
 };

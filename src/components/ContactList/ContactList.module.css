@@ -7,17 +7,9 @@
 }
 .contact {
   min-width: 300px;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-between;
   border: 3px solid;
   border-radius: 10px;
   padding: 10px;
-}
-.btmDl {
-  display: flex;
-  margin: auto;
 }
 h2 {
   margin: 0;

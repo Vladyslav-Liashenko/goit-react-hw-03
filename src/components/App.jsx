@@ -4,6 +4,21 @@ import { SearchBox } from './SearchBox/SearchBox';
 import { ContactList } from './ContactList/ContactList';
 
 function App() {
+
+  // FORM
+  const addContact = newContact => {
+    setAllContacts(prevContact => {
+      return [...prevContact, newContact];
+    });
+  };
+
+  const deleteContact = contactId => {
+    const updatedContacts = allContacts.filter(
+      contact => contact.id !== contactId
+    );
+    setAllContacts(updatedContacts);
+  };
+  
 //   CONTACT LIST//
   const [allContacts, setAllContacts] = useState(() => {
   const savedContacts = window.localStorage.getItem('allContacts');
@@ -17,13 +32,6 @@ function App() {
     window.localStorage.setItem('allContacts', JSON.stringify(allContacts));
   }, [allContacts]);
 
-  const deleteContact = contactId => {
-    const updatedContacts = allContacts.filter(
-      contact => contact.id !== contactId
-    );
-    setAllContacts(updatedContacts);
-  };
-
   // FILTER
   const [inputValue, setInputValue] = useState('');
 
@@ -34,13 +42,6 @@ function App() {
   const filteredContacts = allContacts.filter(contact =>
     contact.name.toLowerCase().includes(inputValue.toLowerCase())
   );
-
-  // FORM
-  const addContact = newContact => {
-    setAllContacts(prevContact => {
-      return [...prevContact, newContact];
-    });
-  };
 
   return (
     <>
